@@ -1,6 +1,7 @@
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -17,10 +18,16 @@ import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    name: "MyTaxi".tr,
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (defaultTargetPlatform == TargetPlatform.android) {
+    // Usa configuração nativa do google-services.json no Android
+    await Firebase.initializeApp(name: "MyTaxi".tr);
+  } else {
+    // Usa opções geradas no iOS (requer GoogleService-Info.plist correto)
+    await Firebase.initializeApp(
+      name: "MyTaxi".tr,
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
   configLoading();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,

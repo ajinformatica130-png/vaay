@@ -57,6 +57,7 @@ class Constant {
   static String mapAPIKey = "";
   static String senderId = "";
   static String jsonFileURL = "";
+  static const String baseUrl = "https://tochegandodelivery.site";
   static String radius = "100";
   static double interCityRadius = 100.0;
   static String distanceType = "";
