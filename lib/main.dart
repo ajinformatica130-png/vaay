@@ -19,8 +19,8 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (defaultTargetPlatform == TargetPlatform.android) {
-    // Usa configuração nativa do google-services.json no Android
-    await Firebase.initializeApp(name: "MyTaxi".tr);
+    // Usa configuração nativa do google-services.json no Android com app [DEFAULT]
+    await Firebase.initializeApp();
   } else {
     // Usa opções geradas no iOS (requer GoogleService-Info.plist correto)
     await Firebase.initializeApp(
